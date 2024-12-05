@@ -1,33 +1,16 @@
 package router
 
 import (
-	"net/http"
-
 	"github.com/gin-gonic/gin"
+	"github.com/ivovilar1/goledger-challenge-besu/handler"
 )
 
 func initRoutes(router *gin.Engine) {
 	v1 := router.Group("/api/v1")
 	{
-		v1.POST("/set", func(ctx *gin.Context) {
-			ctx.JSON(http.StatusOK, gin.H{
-				"msg": "ok",
-			})
-		})
-		v1.GET("/get", func(ctx *gin.Context) {
-			ctx.JSON(http.StatusOK, gin.H{
-				"msg": "ok",
-			})
-		})
-		v1.POST("/sync", func(ctx *gin.Context) {
-			ctx.JSON(http.StatusOK, gin.H{
-				"msg": "ok",
-			})
-		})
-		v1.GET("/check", func(ctx *gin.Context) {
-			ctx.JSON(http.StatusOK, gin.H{
-				"msg": "ok",
-			})
-		})
+		v1.POST("/set", handler.SetHandler)
+		v1.GET("/get", handler.GetHandler)
+		v1.POST("/sync", handler.SyncHandler)
+		v1.GET("/check", handler.CheckHandler)
 	}
 }
