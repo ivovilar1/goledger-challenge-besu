@@ -7,7 +7,13 @@ import (
 )
 
 func SetHandler(ctx *gin.Context) {
-	ctx.JSON(http.StatusOK, gin.H{
-		"msg": "ok",
-	})
+
+	request := SetContractValueRequest{}
+	ctx.BindJSON(&request)
+
+	if err := request.Validate(); err != nil {
+		logger.Errf("Validation error: %v", err.Error())
+		SendError(ctx, http.StatusBadRequest, err.Error())
+		return
+	}
 }
