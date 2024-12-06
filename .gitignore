@@ -13,5 +13,7 @@ besu/contracts/build/contracts
 
 
 
+# db folder
+db/
 .DS_Store
 tmp
