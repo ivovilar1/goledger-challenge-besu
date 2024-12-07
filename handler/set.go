@@ -2,6 +2,7 @@ package handler
 
 import (
 	"context"
+	"math/big"
 	"net/http"
 	"strings"
 	"time"
@@ -26,7 +27,12 @@ func SetHandler(ctx *gin.Context) {
 		return
 	}
 
-	value := request.Value
+	value := new(big.Int)
+	if _, ok := value.SetString(request.Value, 10); !ok {
+		logger.Errf("failed to convert string '%s' to *big.Int", request.Value)
+		SendError(ctx, http.StatusBadRequest, "Invalid value format")
+		return
+	}
 
 	abi, err := abi.JSON(strings.NewReader(`[{
 		"inputs": [],
