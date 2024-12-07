@@ -1,6 +1,7 @@
 package schemas
 
 import (
+	"math/big"
 	"time"
 
 	"gorm.io/gorm"
@@ -8,12 +9,12 @@ import (
 
 type Contract struct {
 	gorm.Model
-	Value string
+	Value *big.Int
 }
 
 type ContractResponse struct {
 	ID        uint      `json:"id"`
-	Value     string    `json:"value"`
+	Value     *big.Int  `json:"value"`
 	CreatedAt time.Time `json:"created_at"`
 	UpdatedAt time.Time `json:"updated_at"`
 }
