@@ -9,8 +9,8 @@ import (
 func GetHandler(ctx *gin.Context) {
 	value, err := CallContract()
 	if err != nil {
-		logger.Errf("error calling contract: %v", err)
-		SendError(ctx, http.StatusBadRequest, "error calling contract")
+		logger.Errf("error to retrieve value of contract: %v", err)
+		SendError(ctx, http.StatusBadRequest, "error to retrieve value of contract")
 		return
 	}
 
