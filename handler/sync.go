@@ -15,14 +15,33 @@ func SyncHandler(ctx *gin.Context) {
 		SendError(ctx, http.StatusBadRequest, "error to retrieve value")
 		return
 	}
+
 	valueStr := fmt.Sprintf("%v", value)
-	contract := schemas.Contract{
-		Value: valueStr,
+
+	var contract schemas.Contract
+
+	// check if exists a contract in db. If exists just update
+	if err := db.First(&contract).Error; err != nil {
+		if err.Error() == "record not found" {
+			contract = schemas.Contract{Value: valueStr}
+			if err := db.Create(&contract).Error; err != nil {
+				logger.Errf("error to sync value: %v", err.Error())
+				SendError(ctx, http.StatusInternalServerError, "error to sync value")
+				return
+			}
+		} else {
+			logger.Errf("error to find existing value: %v", err.Error())
+			SendError(ctx, http.StatusInternalServerError, "error to find existing value")
+			return
+		}
+	} else {
+		contract.Value = valueStr
+		if err := db.Save(&contract).Error; err != nil {
+			logger.Errf("error to update value: %v", err.Error())
+			SendError(ctx, http.StatusInternalServerError, "error to update value")
+			return
+		}
 	}
 
-	if err := db.Create(&contract).Error; err != nil {
-		logger.Errf("error to sync value: %v", err.Error())
-		return
-	}
 	SendSucess(ctx, "operation-sync", contract)
 }
