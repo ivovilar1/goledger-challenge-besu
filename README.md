@@ -16,31 +16,32 @@ To accomplish that, we recommend you use a UNIX-like machine (Linux/macOS). Besi
 
 To set up the environment, you need to clone this repository. Make sure you have installed the requirements. To set up the environment, you need to run the following commands:
 
+
 1. Clone this repository
 2. Enter into folder:
-		```bash
-		cd goledger-challeng-besu
-		```
+```bash
+cd goledger-challeng-besu
+```
 3. Enter into besu folder:
-		```bash
-		cd besu
-		```
+```bash
+	cd besu
+```
 4. Install hardhat:
-		```bash
-		npm install --save-dev hardhat
-		```
+```bash
+	npm install --save-dev hardhat
+```
 5. Start scripts that will setup besu network:
-		```bash
-		./startDev.sh
-		```
+```bash
+./startDev.sh
+```
 6. Install dependecy:
-		```bash
-		go mod tidy
-		```
+```bash
+	go mod tidy
+```
 7. Run server:
-		```bash
-		go run main.go
-		```
+```bash
+go run main.go
+```
 
 **Note**
 This server running in port 8080, you can change this in the code if you want.
