@@ -24,11 +24,11 @@ cd goledger-challeng-besu
 ```
 3. Enter into besu folder:
 ```bash
-	cd besu
+cd besu
 ```
 4. Install hardhat:
 ```bash
-	npm install --save-dev hardhat
+npm install --save-dev hardhat
 ```
 5. Start scripts that will setup besu network:
 ```bash
@@ -36,7 +36,7 @@ cd goledger-challeng-besu
 ```
 6. Install dependecy:
 ```bash
-	go mod tidy
+go mod tidy
 ```
 7. Run server:
 ```bash
