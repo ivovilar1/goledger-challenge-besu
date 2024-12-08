@@ -59,7 +59,7 @@ This server running in port 8080, you can change this in the code if you want.
 - **Sync**: Interacts with the Besu network to retrieve the value from the smart contract and insert/update it in the database.
 - **Check**: Interacts with the Besu network to retrieve the value from the smart contract, compares it with the value stored in the database, and performs a validation.
 
-You can check these endpoints here: .
+You can check these endpoints here: https://www.postman.com/ivovilar1/besuapp/collection/a1l8cz3/besuapp.
 
 ## Application Structure:
 
